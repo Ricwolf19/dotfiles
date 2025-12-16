@@ -1,0 +1,27 @@
+# --- macOS System Junk ---
+.DS_Store
+**/.DS_Store
+.CFUserTextEncoding
+.Trash/
+
+# --- Vim / Neovim Temporary Files ---
+# Swap files (used while editing)
+*.swp
+*.swo
+# Persistent undo history (if you enable it later)
+*.undo
+# Netrw history
+.netrwhist
+
+# --- Sensitive / History (Safety net) ---
+# Even if you don't stow these, it's good to ignore them just in case
+.bash_history
+.zsh_history
+.lesshst
+*.log
+.history/
+
+# --- Tmux ---
+# Ignore the plugins folder itself (we only want the TPM manager script)
+tmux/.tmux/plugins/
+!tmux/.tmux/plugins/tpm
