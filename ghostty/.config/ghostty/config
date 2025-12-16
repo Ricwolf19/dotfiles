@@ -1,0 +1,15 @@
+# --- Appearance ---
+theme = TokyoNight Night
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+font-feature = calt
+font-feature = liga
+
+# --- Window ---
+window-padding-x = 10
+window-padding-y = 10
+window-decoration = false
+macos-titlebar-style = hidden
+
+# --- Behavior ---
+mouse-hide-while-typing = true 
