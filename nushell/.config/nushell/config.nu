@@ -33,3 +33,5 @@ source ~/.config/nushell/plugins.nu
 # Completion behavior
 source ~/.config/nushell/completions.nu
 
+# Custom functions 
+source ~/.config/nushell/functions.nu
