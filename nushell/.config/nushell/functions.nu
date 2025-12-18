@@ -31,7 +31,8 @@ def gupf [] {                                      # Set upstream explicitly
 def gupv2 [] { git branch -vv }                    # Aliased alternative upstream info
 
 # ---------- Git — Pull & Push ----------
-def gpl [] { git pull --rebase }                   # Pull with rebase
+def gpl [] { git pull }                            # Pull
+def gplr [] { git pull --rebase }                  # Pull with rebase
 def gp [] { git push }                             # Push changes
 def gpf [] { git push --force-with-lease }         # Safe “force push”
 
