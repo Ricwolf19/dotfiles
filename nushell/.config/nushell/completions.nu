@@ -1,13 +1,11 @@
 # ─────────────────────────────────────────────────────────
-# Environment Variables
+# Completion Settings
 # ─────────────────────────────────────────────────────────
 
-# Default editor
-$env.EDITOR = "nvim"
-
-# Add Homebrew to PATH
-$env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
-
-# Starship config path
-$env.STARSHIP_CONFIG = ($env.HOME | path join ".config/starship/starship.toml")
+$env.config.completions = {
+  case_sensitive: false    # case-insensitive tab completion
+  quick: true              # auto-select when only one result remains
+  partial: true            # auto-fill partially
+  algorithm: "fuzzy"       # fuzzy matching for nicer results
+}
 

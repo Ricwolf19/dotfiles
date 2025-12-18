@@ -1,13 +1,12 @@
 # ─────────────────────────────────────────────────────────
-# Environment Variables
+# Shell Aliases
 # ─────────────────────────────────────────────────────────
 
-# Default editor
-$env.EDITOR = "nvim"
+alias c = clear
+alias ll = ls -l
+alias l = ls
 
-# Add Homebrew to PATH
-$env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
-
-# Starship config path
-$env.STARSHIP_CONFIG = ($env.HOME | path join ".config/starship/starship.toml")
+# Go up directories faster
+alias .. = cd ..
+alias ... = cd ../..
 
