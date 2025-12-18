@@ -69,9 +69,6 @@ Navigation: h j k l (Seamless movement between Tmux panes and Vim splits)
 
 Splits: | (Horizontal) and - (Vertical)
 
-Built with ❤️ and a lot of caffeine.
-
-
 ---
 
 ### How to push this to GitHub

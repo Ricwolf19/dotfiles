@@ -1,15 +1,37 @@
-# --- Appearance ---
-theme = TokyoNight Night
-font-family = "JetBrainsMono Nerd Font"
+##########################################################
+# Ghostty Config
+#########################################################
+
+#################################
+# Appearance
+#################################
+
+theme = "TokyoNight Night"
+
+# Font
+font-family = "JetBrains Mono Nerd Font"
 font-size = 14
-font-feature = calt
-font-feature = liga
+font-thicken = true
 
-# --- Window ---
-window-padding-x = 10
-window-padding-y = 10
-window-decoration = false
-macos-titlebar-style = hidden
+#################################
+# Behavior
+#################################
 
-# --- Behavior ---
-mouse-hide-while-typing = true 
+# Hide mouse while typing
+mouse-hide-while-typing = true
+
+#################################
+# Quick Terminal (Temporal / Visor)
+#################################
+
+# Bind global key for the Quick terminal
+# Toggles on/off latency-free overlay terminal
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+#################################
+# Clipboard & Behavior
+#################################
+
+clipboard-read = allow
+clipboard-paste-protection = false
+confirm-close-surface = false
