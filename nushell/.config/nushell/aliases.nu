@@ -1,55 +1,55 @@
 # ─────────────────────────────────────────────────────────
-# Simple aliases (no expressions)
-# ─────────────────────────────────────────────────────────
+# Nushell Aliases — Navigation, Git, Tools
+# Simple commands only (no pipelines or expressions)
+# --------------------------------------------------------------------
 
-# CLEAR / HISTORY
-alias c = clear
-alias h = history
+# ---------- Clear & History ----------
+alias c   = clear                          # Clear screen
+alias h   = history                        # Show command history
 
-# NAVIGATION
-alias .. = cd ..
-alias ... = cd ../..
-alias .... = cd ../../..
-alias home = cd ~
+# ---------- Navigation ----------
+alias ..    = cd ..                        # Up one directory
+alias ...   = cd ../..                     # Up two directories
+alias ....  = cd ../../..                  # Up three
+alias home  = cd ~                         # Go to home directory
 
-# FILE LISTING (simple)
-alias l  = ls
-alias la = ls -a
-alias ll = ls -l
+# zoxide provides:
+# z <pattern> , zi interactive jump, etc.
+# no need to alias here
 
-# EDITORS / TOOLS
-alias v  = nvim
-alias nv = nvim
-alias t  = tmux
-alias ta = tmux attach || tmux new -s main
+# ---------- Listing ----------
+alias l   = ls                             # Basic list
+alias la  = ls -a                          # List all including hidden
+alias ll  = ls -l                          # Long list (simple)
 
-# GIT — CORE
-alias g   = git
-alias gs  = git status
-alias ga  = git add
-alias gaa = git add .
-alias gc  = git commit
-alias gcm = git commit -m
-alias gca = git commit --amend
-alias gco = git checkout
-alias gcb = git checkout -b
-alias gb  = git branch
+# ---------- Editors & Tools ----------
+alias v    = nvim                          # Neovim
+alias nv   = nvim                          # Short for Neovim
+alias t    = tmux                          # Tmux
+alias ta   = tmux attach                   # Attach to existing TMUX
 
-# GIT — SYNC
-alias gpl = git pull --rebase
-alias gp  = git push
-alias gpf = git push --force-with-lease
+# ---------- Git — Basics ----------
+alias g     = git                          # Git base command
+alias gs    = git status                   # Show git status
+alias ga    = git add                      # Stage file
+alias gaa   = git add .                    # Stage all changes
+alias gc    = git commit                   # Commit changes
+alias gcm   = git commit -m                # Commit with message
+alias gca   = git commit --amend           # Amend last commit
 
-# GIT — INSPECT
-alias gd  = git diff
-alias gds = git diff --staged
-alias gshow = git show
+# ---------- Git — Inspect / Diff ----------
+alias gd    = git diff                     # Diff unstaged
+alias gds   = git diff --staged            # Diff staged
+alias gshow = git show                     # Show commit details
 
-# GIT — STASH
-alias gst  = git stash
-alias gstp = git stash pop
-alias gsta = git stash apply
+# ---------- Git — Stash ----------
+alias gst   = git stash                    # Stash changes
+alias gsta  = git stash apply              # Apply stash
+alias gstp  = git stash pop                # Pop stash
 
-# NETWORK
-alias myip = ^curl ifconfig.me
+# ---------- Upstream Helpers (simple view) ----------
+alias gupv  = git branch -vv               # Show branch verbose with upstream
+
+# ---------- Network ----------
+alias myip = ^curl ifconfig.me              # Show external IP
 
