@@ -35,7 +35,7 @@ source ~/.config/nushell/zoxide.nu
 #
 # Stored (via stow) at: ~/.config/atuin/atuin.nu
 # ─────────────────────────────────────────────────────────
-source ~/.config/atuin/atuin.nu
+#source ~/.config/atuin/atuin.nu
 
 # ─────────────────────────────────────────────────────────
 # Carapace — Advanced CLI Completions (optional)
