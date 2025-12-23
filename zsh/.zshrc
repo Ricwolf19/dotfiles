@@ -2,6 +2,9 @@
 # ~/.zshrc — Starship-based, Nu-compatible backup shell
 # ------------------------------------------------------------------------------
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # ------------------------------------------------------------------------------
 # XDG BASE DIRECTORIES (shared with Nushell)
 # ------------------------------------------------------------------------------
@@ -41,6 +44,17 @@ command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
 # fzf — optional
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Automatically start tmux if not already inside one
+# and if the shell is interactive
+
+if [[ -n "$PS1" ]] && [ -z "$TMUX" ]; then
+  # Don’t start tmux when ssh’ing or in CI
+  if [ -z "$SSH_CONNECTION" ]; then
+    # Launch tmux with unicode/UTF-8 support
+    exec tmux -u
+  fi
+fi
 
 # ─────────────────────────────────────────────────────────
 # Zsh Aliases — Navigation, Git, Tools
