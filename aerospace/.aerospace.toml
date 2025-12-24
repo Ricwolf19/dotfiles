@@ -178,7 +178,7 @@ alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
 alt-w = 'exec-and-forget open -a /Applications/Windsurf.app'
-alt-e = 'exec-and-forget open -a "Brave Browser"'
+alt-e = 'exec-and-forget open -a "Firefox Developer Edition"'
 # alt-q = 'exec-and-forget open -a /System/Applications/QuickTime Player.app'
 alt-enter = 'exec-and-forget open -a /Applications/WezTerm.app'
 alt-p = 'exec-and-forget open -a /Applications/WhatsApp.app'

@@ -1,6 +1,6 @@
 ##########################################################
-# Ghostty Config
-#########################################################
+# Ghostty Config — TokyoNight
+##########################################################
 
 #################################
 # Appearance
@@ -8,7 +8,6 @@
 
 theme = "TokyoNight Night"
 
-# Font
 font-family = "JetBrains Mono Nerd Font"
 font-size = 14
 font-thicken = true
@@ -17,15 +16,12 @@ font-thicken = true
 # Behavior
 #################################
 
-# Hide mouse while typing
 mouse-hide-while-typing = true
 
 #################################
 # Quick Terminal (Temporal / Visor)
 #################################
 
-# Bind global key for the Quick terminal
-# Toggles on/off latency-free overlay terminal
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 #################################
@@ -35,3 +31,4 @@ keybind = global:ctrl+grave_accent=toggle_quick_terminal
 clipboard-read = allow
 clipboard-paste-protection = false
 confirm-close-surface = false
+

@@ -2,11 +2,11 @@
 # Environment Variables
 # ─────────────────────────────────────────────────────────
 
-# Default editor
 $env.EDITOR = "nvim"
+$env.VISUAL = "nvim"
 
-# Add Homebrew to PATH
 $env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
 
-# Starship config path
+# Starship
 $env.STARSHIP_CONFIG = ($env.HOME | path join ".config/starship/starship.toml")
+

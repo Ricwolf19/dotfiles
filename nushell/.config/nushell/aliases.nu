@@ -1,55 +1,42 @@
 # ─────────────────────────────────────────────────────────
-# Nushell Aliases — Navigation, Git, Tools
-# Simple commands only (no pipelines or expressions)
-# --------------------------------------------------------------------
+# Aliases (simple commands only)
+# ─────────────────────────────────────────────────────────
 
-# ---------- Clear & History ----------
-alias c   = clear                          # Clear screen
-alias h   = history                        # Show command history
+alias c     = clear
+alias h     = history
 
-# ---------- Navigation ----------
-alias ..    = cd ..                        # Up one directory
-alias ...   = cd ../..                     # Up two directories
-alias ....  = cd ../../..                  # Up three
-alias home  = cd ~                         # Go to home directory
+alias ..    = cd ..
+alias ...   = cd ../..
+alias ....  = cd ../../..
+alias home  = cd ~
 
-# zoxide provides:
-# z <pattern> , zi interactive jump, etc.
-# no need to alias here
+alias l     = ls
+alias la    = ls -a
+alias ll    = ls -l
 
-# ---------- Listing ----------
-alias l   = ls                             # Basic list
-alias la  = ls -a                          # List all including hidden
-alias ll  = ls -l                          # Long list (simple)
+alias v     = nvim
+alias nv    = nvim
+alias t     = tmux
+alias ta    = tmux attach
 
-# ---------- Editors & Tools ----------
-alias v    = nvim                          # Neovim
-alias nv   = nvim                          # Short for Neovim
-alias t    = tmux                          # Tmux
-alias ta   = tmux attach                   # Attach to existing TMUX
+# Git basics
+alias g     = git
+alias gs    = git status
+alias ga    = git add
+alias gaa   = git add .
+alias gc    = git commit
+alias gcm   = git commit -m
+alias gca   = git commit --amend
 
-# ---------- Git — Basics ----------
-alias g     = git                          # Git base command
-alias gs    = git status                   # Show git status
-alias ga    = git add                      # Stage file
-alias gaa   = git add .                    # Stage all changes
-alias gc    = git commit                   # Commit changes
-alias gcm   = git commit -m                # Commit with message
-alias gca   = git commit --amend           # Amend last commit
+alias gd    = git diff
+alias gds   = git diff --staged
+alias gshow = git show
 
-# ---------- Git — Inspect / Diff ----------
-alias gd    = git diff                     # Diff unstaged
-alias gds   = git diff --staged            # Diff staged
-alias gshow = git show                     # Show commit details
+alias gst   = git stash
+alias gsta  = git stash apply
+alias gstp  = git stash pop
 
-# ---------- Git — Stash ----------
-alias gst   = git stash                    # Stash changes
-alias gsta  = git stash apply              # Apply stash
-alias gstp  = git stash pop                # Pop stash
+alias gupv  = git branch -vv
 
-# ---------- Upstream Helpers (simple view) ----------
-alias gupv  = git branch -vv               # Show branch verbose with upstream
-
-# ---------- Network ----------
-alias myip = ^curl ifconfig.me              # Show external IP
+alias myip  = ^curl ifconfig.me
 
