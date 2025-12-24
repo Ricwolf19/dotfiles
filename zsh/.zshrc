@@ -1,19 +1,22 @@
 # ------------------------------------------------------------------------------
-# ~/.zshrc — Starship-based, Nu-compatible backup shell
+# ~/.zshrc — Starship + Tools + Aliases
 # ------------------------------------------------------------------------------
 
+# ------------------------------------------------------------------------------
+# LOCALE
+# ------------------------------------------------------------------------------
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # ------------------------------------------------------------------------------
-# XDG BASE DIRECTORIES (shared with Nushell)
+# XDG BASE DIRECTORIES
 # ------------------------------------------------------------------------------
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 # ------------------------------------------------------------------------------
-# PATH (Apple Silicon Homebrew first)
+# PATH
 # ------------------------------------------------------------------------------
 typeset -U PATH fpath
 export PATH="/opt/homebrew/bin:$PATH"
@@ -30,75 +33,44 @@ export VISUAL="nvim"
 eval "$(starship init zsh)"
 
 # ------------------------------------------------------------------------------
-# SHELL TOOLS (same as Nushell)
+# HELPER TOOLS
 # ------------------------------------------------------------------------------
-
-# zoxide — smart directory jumping (z, zi)
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
-
-# atuin — shell history (Ctrl+R)
-command -v atuin >/dev/null && eval "$(atuin init zsh)"
-
-# direnv — per-project env vars
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
-
-# fzf — optional
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Automatically start tmux if not already inside one
-# and if the shell is interactive
-
-if [[ -n "$PS1" ]] && [ -z "$TMUX" ]; then
-  # Don’t start tmux when ssh’ing or in CI
-  if [ -z "$SSH_CONNECTION" ]; then
-    # Launch tmux with unicode/UTF-8 support
-    exec tmux -u
-  fi
+# ------------------------------------------------------------------------------
+# ATUIN SHELL HISTORY (zsh fallback)
+# ------------------------------------------------------------------------------
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
 fi
 
-# ─────────────────────────────────────────────────────────
-# Zsh Aliases — Navigation, Git, Tools
-# ─────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
+# ALIASES — Navigation, Git, Tools
+# ------------------------------------------------------------------------------
 
-# -------------------------
-# SAFETY
-# -------------------------
-alias rm="rm -i"           # confirm deletes
-alias cp="cp -iv"          # verbose copy
-alias mv="mv -iv"          # verbose move
+alias rm="rm -i"
+alias cp="cp -iv"
+alias mv="mv -iv"
 
-# -------------------------
-# NAVIGATION
-# -------------------------
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias home="cd ~"
-
-# zoxide (auto jump)
-# added via eval "$(zoxide init zsh)"
-
-# -------------------------
-# LISTING
-# -------------------------
+# navigation
 alias ls="ls --color=auto"
 alias l="ls -CF"
 alias la="ls -A"
 alias ll="ls -lah"
-alias lt="ls -lt"           # sort by time
-alias lS="ls -lSh"          # sort by size
+alias lt="ls -lt"
+alias lS="ls -lSh"
+alias ..="cd .."
+alias ...="cd ../.."
 
-# -------------------------
-# EDITORS / TOOLS
-# -------------------------
-alias v="nvim"              # Neovim
+# editors / tools
+alias v="nvim"
 alias t="tmux"
 alias ta="tmux attach || tmux new -s main"
-alias openh="open ."        # open Finder (macOS)
+alias openh="open ."
 
-# -------------------------
-# GIT — CORE WORKFLOWS
-# -------------------------
+# git core
 alias g="git"
 alias gs="git status -sb"
 alias ga="git add"
@@ -106,53 +78,24 @@ alias gaa="git add ."
 alias gc="git commit"
 alias gcm="git commit -m"
 alias gca="git commit --amend"
-
-# branch shortcuts
 alias gbl="git branch"
-alias gbr="git branch -r"
-alias gba="git branch -a"
-alias gcb="git branch --show-current"
 alias gsw="git switch"
-alias gswp="git switch -"
-
-# create / checkout
-alias gnb="git switch -c"    # new branch
-alias gco="git checkout"    # legacy but still useful
-
-# -------------------------
-# GIT — SYNC, UPSTREAM
-# -------------------------
+alias gnb="git switch -c"
 alias gpl="git pull --rebase"
 alias gp="git push"
 alias gpf="git push --force-with-lease"
-alias gup="git push -u origin HEAD"  # set upstream
-alias gupv="git branch -vv"          # view upstream
-
-# -------------------------
-# GIT — LOG & INSPECTION
-# -------------------------
+alias gup="git push -u origin HEAD"
+alias gupv="git branch -vv"
 alias gl="git log --oneline --graph --decorate --all"
 alias glp="git log --color=always --graph --pretty=format:'%C(auto)%h %C(bold blue)%s%C(reset) %C(yellow)(%cr) %C(green)<%an>%C(reset)' --abbrev-commit"
-alias gd="git diff"
-alias gds="git diff --staged"
-alias gshow="git show"
-
-# -------------------------
-# GIT — CLEANUP & RECOVERY
-# -------------------------
 alias grh="git reset --hard"
-alias gclean="git clean -fd"
 alias gst="git stash"
 alias gstp="git stash pop"
-alias gsta="git stash apply"
-alias gprune="git fetch --prune"    # prune stale remotes
-alias grecover="git reflog"        # history recovery
-
-# -------------------------
-# NETWORK
-# -------------------------
+alias gprune="git fetch --prune"
+alias grecover="git reflog"
 alias myip="curl ifconfig.me"
 
 # ------------------------------------------------------------------------------
-# END
+# No explicit shell launch here — handled by .zprofile
 # ------------------------------------------------------------------------------
+
