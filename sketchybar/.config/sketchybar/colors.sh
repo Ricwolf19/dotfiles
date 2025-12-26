@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+BAR_BG=0xff1f2335
+FG=0xffc0caf5
+MUTED=0xff565f89
+PURPLE=0xff7c3aed
+BLUE=0xff7aa2f7
+GREEN=0xff9ece6a
+ORANGE=0xffff9e64
+RED=0xfff7768e
+
