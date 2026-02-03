@@ -1,34 +1,37 @@
 ##########################################################
-# Ghostty Config — TokyoNight
+# Ghostty — TokyoNight + macOS Optimizations
 ##########################################################
 
 #################################
 # Appearance
 #################################
-
-theme = "TokyoNight Night"
-
-font-family = "JetBrains Mono Nerd Font"
+theme = TokyoNight Night
+font-family = JetBrains Mono Nerd Font
 font-size = 14
 font-thicken = true
 
 #################################
 # Behavior
 #################################
-
 mouse-hide-while-typing = true
+confirm-close-surface = false
+
+macos-non-native-fullscreen = false
 
 #################################
-# Quick Terminal (Temporal / Visor)
+# Clipboard
 #################################
+clipboard-read = allow
+clipboard-paste-protection = false
+clipboard-write = allow
 
+#################################
+# Quick Terminal (Visor)
+#################################
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 #################################
-# Clipboard & Behavior
+# Shell Integration (optional)
 #################################
-
-clipboard-read = allow
-clipboard-paste-protection = false
-confirm-close-surface = false
-
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
