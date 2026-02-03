@@ -1,6 +1,6 @@
 ###############################################################################
-#                          AeroSpace Configuration                            #
-# Integrates with SketchyBar (bottom Tokyo Night bar)                         #
+#                          AeroSpace Configuration                             #
+# Integrates with SketchyBar                         			       #
 # Also includes JankyBorders and workspace app assignment                      #
 ###############################################################################
 
@@ -14,15 +14,14 @@ after-startup-command = [
   # Start SketchyBar (reads config from ~/.config/sketchybar/sketchybar.conf)
   #"exec-and-forget sketchybar",
 
-  # Start JankyBorders with Tokyo Night colors
-  "exec-and-forget borders --debounce 50 active_color=0xff7c3aed inactive_color=0xff2a254b width=2 order=above"
+  # Start JankyBorders 
+  "exec-and-forget borders --debounce 50 active_color=0xffe5f0ff inactive_color=0xff2a2e3a width=2 order=above"
 ]
 
 #exec-on-workspace-change = [
 #  "/bin/bash", "-c",
 #  "sketchybar --trigger aerospace_workspace_change INFO=$AEROSPACE_FOCUSED_WORKSPACE"
 #]
-
 
 # -------------------------------- NORMALIZATION -----------------------------
 
@@ -69,12 +68,12 @@ run = "layout floating"
 
 # Firefox Developer Edition → Workspace 1
 [[on-window-detected]]
-if.app-name-regex-substring = "Firefox Developer Edition"
+if.app-name-regex-substring = "Google Chrome"
 run = "move-node-to-workspace 1"
 
 # Windsurf (Editor) → Workspace 2
 [[on-window-detected]]
-if.app-name-regex-substring = "Windsurf"
+if.app-name-regex-substring = "Zed"
 run = "move-node-to-workspace 2"
 
 # Ghostty (Terminal) → Workspace 3
@@ -122,9 +121,9 @@ alt-shift-5 = "move-node-to-workspace 5 --focus-follows-window"
 alt-p = "exec-and-forget open -a WhatsApp"
 alt-cmd-space = "exec-and-forget open -a Finder"
 alt-s = "exec-and-forget open -a 1Password"
-alt-w = "exec-and-forget open -a Windsurf"
+alt-w = "exec-and-forget open -a Zed"
 alt-enter = "exec-and-forget open -a Ghostty"
-alt-f = "exec-and-forget open -a \"Firefox Developer Edition\""
+alt-f = "exec-and-forget open -a \"Google Chrome\""
 
 # Layout toggles
 alt-ctrl-f = "layout floating tiling"
