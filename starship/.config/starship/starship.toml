@@ -1,58 +1,40 @@
-# ─────────────────────────────────────────────
-# Starship — Tokyo Night
-# ─────────────────────────────────────────────
+# One Dark palette
+palette = "one_dark"
 
-add_newline = false
-command_timeout = 800
-
-palette = "tokyo_night"
+[palettes.one_dark]
+bg = "#282c34"
+fg = "#abb2bf"
+blue = "#61afef"
+cyan = "#56b6c2"
+green = "#98c379"
+orange = "#d19a66"
+purple = "#c678dd"
+red = "#e06c75"
+yellow = "#e5c07b"
 
 format = """
 $directory\
 $git_branch\
 $git_status\
 $nodejs\
-$rust\
-$python\
-$golang\
-$deno\
-$cmd_duration\
-$line_break\
 $character
 """
-
-[palettes.tokyo_night]
-bg = "#1a1b26"
-fg = "#c0caf5"
-blue = "#7aa2f7"
-cyan = "#7dcfff"
-green = "#9ece6a"
-purple = "#bb9af7"
-red = "#f7768e"
-yellow = "#e0af68"
-gray = "#565f89"
-
-[directory]
-style = "bold blue"
-truncation_length = 4
-truncate_to_repo = true
-
-[git_branch]
-symbol = " "
-style = "purple"
-
-[git_status]
-style = "yellow"
-
-[nodejs]
-symbol = " "
-style = "green"
-
-[python]
-symbol = " "
-style = "cyan"
 
 [character]
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
 
+[directory]
+style = "blue"
+truncation_length = 3
+
+[git_branch]
+style = "purple"
+symbol = " "
+
+[git_status]
+style = "yellow"
+
+[nodejs]
+style = "green"
+symbol = " "
