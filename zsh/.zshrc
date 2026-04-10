@@ -153,3 +153,9 @@ if command -v fzf &>/dev/null; then
     [[ -n "$dir" ]] && cd "$dir"
   }
 fi
+
+# Added by Antigravity
+export PATH="/Users/ric19/.antigravity/antigravity/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/ric19/.antigravity/antigravity/bin:$PATH"
