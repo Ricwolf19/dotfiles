@@ -1,13 +1,13 @@
-# One Dark palette
-palette = "one_dark"
+# Tema One Dark - Darkened
+palette = "one_dark_darkened"
 
-[palettes.one_dark]
-bg = "#282c34"
-fg = "#abb2bf"
+[palettes.one_dark_darkened]
+bg = "#17191d"
+fg = "#c8ccd4"
 blue = "#61afef"
 cyan = "#56b6c2"
 green = "#98c379"
-orange = "#d19a66"
+orange = "#dfc184"
 purple = "#c678dd"
 red = "#e06c75"
 yellow = "#e5c07b"

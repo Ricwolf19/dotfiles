@@ -22,7 +22,7 @@ if.app-name-regex-substring = "Zen"
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Antigravity"
+if.app-name-regex-substring = "Zed"
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
@@ -61,7 +61,7 @@ alt-shift-3 = "move-node-to-workspace 3 --focus-follows-window"
 alt-shift-4 = "move-node-to-workspace 4 --focus-follows-window"
 alt-shift-5 = "move-node-to-workspace 5 --focus-follows-window"
 
-alt-a = "exec-and-forget open -a Antigravity"
+alt-a = "exec-and-forget open -a Zed"
 alt-w = "exec-and-forget open -a WhatsApp"
 alt-e = "exec-and-forget open -a Finder"
 alt-p = "exec-and-forget open -a 1Password"

@@ -1,0 +1,23 @@
+themes {
+    one_dark_darkened {
+        fg "#c8ccd4"
+        bg "#17191d"
+        black "#282c34"
+        red "#e06c75"
+        green "#98c379"
+        yellow "#e5c07b"
+        blue "#61afef"
+        magenta "#c678dd"
+        cyan "#56b6c2"
+        white "#abb2bf"
+        orange "#dfc184"
+    }
+}
+theme "one_dark_darkened"
+
+default_layout "default"
+pane_frames false
+
+mouse_mode true
+copy_command "pbcopy"
+copy_on_select true
