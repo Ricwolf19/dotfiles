@@ -1,93 +1,39 @@
-###############################################################################
-#                          AeroSpace Configuration                             #
-# Integrates with SketchyBar                         			       #
-# Also includes JankyBorders and workspace app assignment                      #
-###############################################################################
-
-# -------------------------------- STARTUP ----------------------------------
-
-# Start AeroSpace at login
+# STARTUP
 start-at-login = true
+after-startup-command = []
 
-# After AeroSpace starts, launch SketchyBar and JankyBorders
-after-startup-command = [
-  # Start SketchyBar (reads config from ~/.config/sketchybar/sketchybar.conf)
-  #"exec-and-forget sketchybar",
-
-  # Start JankyBorders 
-  "exec-and-forget borders --debounce 50 active_color=0xffe5f0ff inactive_color=0xff2a2e3a width=2 order=above"
-]
-
-#exec-on-workspace-change = [
-#  "/bin/bash", "-c",
-#  "sketchybar --trigger aerospace_workspace_change INFO=$AEROSPACE_FOCUSED_WORKSPACE"
-#]
-
-# -------------------------------- NORMALIZATION -----------------------------
-
-# Flatten nested containers for consistent tiling
-enable-normalization-flatten-containers = true
-# Automatically adjust nested orientation
+# GENERAL SETTINGS
+enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = true
-
-# Default layout
 default-root-container-layout = "tiles"
 default-root-container-orientation = "auto"
 accordion-padding = 300
-
-# Center mouse on monitor switch
 on-focused-monitor-changed = ["move-mouse monitor-lazy-center"]
-
-# Do not automatically unhide hidden apps on macOS
 automatically-unhide-macos-hidden-apps = false
 
-# -------------------------- FLOATING WINDOWS -------------------------------
-
-# These always float (don’t tile)
+# WINDOW RULES
 [[on-window-detected]]
-if.app-name-regex-substring = "WhatsApp"
+if.app-name-regex-substring = '^(Finder|System Settings|Calculator|Calendar|Dictionary|App Store|Activity Monitor|System Information)$'
 run = "layout floating"
 
+# WORKSPACE ASSIGNMENTS
 [[on-window-detected]]
-if.app-name-regex-substring = "Finder"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-name-regex-substring = "Discord"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-name-regex-substring = "Mail"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-name-regex-substring = "1Password"
-run = "layout floating"
-
-# ------------------ AUTO ASSIGN APPS TO WORKSPACES -------------------------
-
-# Firefox Developer Edition → Workspace 1
-[[on-window-detected]]
-if.app-name-regex-substring = "Google Chrome"
+if.app-name-regex-substring = "Zen"
 run = "move-node-to-workspace 1"
 
-# Windsurf (Editor) → Workspace 2
 [[on-window-detected]]
 if.app-name-regex-substring = "Zed"
 run = "move-node-to-workspace 2"
 
-# Ghostty (Terminal) → Workspace 3
 [[on-window-detected]]
 if.app-name-regex-substring = "Ghostty"
 run = "move-node-to-workspace 3"
 
-# Obsidian (Extra) → Workspace 5
 [[on-window-detected]]
 if.app-name-regex-substring = "Obsidian"
-run = "move-node-to-workspace 5"
+run = "move-node-to-workspace 4"
 
-# ---------------------------- KEY MAPPING -----------------------------------
-
+# GAPS & MAPPING
 [key-mapping]
 preset = "qwerty"
 
@@ -99,71 +45,67 @@ outer.bottom = 10
 outer.top = 10
 outer.right = 10
 
-# ------------------------- MAIN BINDINGS -----------------------------------
-
+# MAIN BINDINGS
 [mode.main.binding]
-
-# Workspace navigation
 alt-1 = "workspace 1"
 alt-2 = "workspace 2"
 alt-3 = "workspace 3"
 alt-4 = "workspace 4"
 alt-5 = "workspace 5"
+alt-tab = "workspace-back-and-forth"
+alt-shift-tab = "move-workspace-to-monitor --wrap-around next"
 
-# Move focused window to workspace
 alt-shift-1 = "move-node-to-workspace 1 --focus-follows-window"
 alt-shift-2 = "move-node-to-workspace 2 --focus-follows-window"
 alt-shift-3 = "move-node-to-workspace 3 --focus-follows-window"
 alt-shift-4 = "move-node-to-workspace 4 --focus-follows-window"
 alt-shift-5 = "move-node-to-workspace 5 --focus-follows-window"
 
-# App launch shortcuts
-alt-p = "exec-and-forget open -a WhatsApp"
-alt-cmd-space = "exec-and-forget open -a Finder"
-alt-s = "exec-and-forget open -a 1Password"
-alt-w = "exec-and-forget open -a Zed"
+alt-a = "exec-and-forget open -a Zed"
+alt-w = "exec-and-forget open -a WhatsApp"
+alt-e = "exec-and-forget open -a Finder"
+alt-p = "exec-and-forget open -a 1Password"
+alt-z = "exec-and-forget open -a Zen"
 alt-enter = "exec-and-forget open -a Ghostty"
-alt-f = "exec-and-forget open -a \"Google Chrome\""
+alt-o = "exec-and-forget open -a Obsidian"
+alt-m = "exec-and-forget open -a \"MongoDB Compass\""
 
-# Layout toggles
-alt-ctrl-f = "layout floating tiling"
-alt-slash = "layout tiles horizontal vertical"
-alt-comma = "layout accordion horizontal vertical"
-
-# Focus navigation
 alt-h = "focus left"
 alt-j = "focus down"
 alt-k = "focus up"
 alt-l = "focus right"
 
-# Move windows
 alt-shift-h = "move left"
 alt-shift-j = "move down"
 alt-shift-k = "move up"
 alt-shift-l = "move right"
 
-# Resize windows
-alt-shift-minus = "resize smart -50"
-alt-shift-equal = "resize smart +50"
+alt-v = "split vertical"
+alt-s = "split horizontal"
 
-# Switch back and forth between workspaces
-alt-tab = "workspace-back-and-forth"
-alt-shift-tab = "move-workspace-to-monitor --wrap-around next"
+alt-minus = "resize smart -50"
+alt-equal = "resize smart +50"
 
-# Extra modes
+alt-space = "layout floating tiling"
+alt-f = "fullscreen"
+
 alt-shift-semicolon = "mode service"
 alt-shift-enter = "mode apps"
+alt-d = "mode layout" 
 
-# ------------------------ SERVICE MODE -------------------------------------
+# MODES
+[mode.layout.binding]
+t = ["layout tiles horizontal vertical", "mode main"] 
+a = ["layout accordion horizontal vertical", "mode main"] 
+r = ["flatten-workspace-tree", "mode main"]
+esc = ["mode main"]
+enter = ["mode main"]
 
 [mode.service.binding]
-esc = ["reload-config", "mode main"]
-r = ["flatten-workspace-tree", "mode main"]
-f = ["layout floating tiling", "mode main"]
+esc = ["mode main"]
+r = ["reload-config", "mode main"]
 backspace = ["close-all-windows-but-current", "mode main"]
-
-# ------------------------- APPS MODE ----------------------------------------
 
 [mode.apps.binding]
 alt-enter = ["exec-and-forget open -a Ghostty", "mode main"]
-
+esc = ["mode main"]

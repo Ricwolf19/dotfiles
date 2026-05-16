@@ -1,10 +1,7 @@
-# This is Git's per-user configuration file.
+
 [user]
 	name = Ricwolf19
 	email = rhtc19@gmail.com
-# Please adapt and uncomment the following lines:
-#	name = Ricardo Tapia
-#	email = rhtc19@gmail.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
