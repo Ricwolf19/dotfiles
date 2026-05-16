@@ -13,7 +13,7 @@ automatically-unhide-macos-hidden-apps = false
 
 # WINDOW RULES
 [[on-window-detected]]
-if.app-name-regex-substring = '^(Finder|1Password|WhatsApp|System Settings|Calculator|Calendar|Dictionary|App Store|Activity Monitor|System Information)$'
+if.app-name-regex-substring = '^(Finder|System Settings|Calculator|Calendar|Dictionary|App Store|Activity Monitor|System Information)$'
 run = "layout floating"
 
 # WORKSPACE ASSIGNMENTS
