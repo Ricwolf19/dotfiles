@@ -79,3 +79,23 @@ if command -v fzf &>/dev/null; then
     [[ -n "$dir" ]] && cd "$dir"
   }
 fi
+
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
+
+# Java (JDK 17 — required by React Native 0.85 Gradle toolchain)
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/ric19/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# bun completions
+[ -s "/Users/ric19/.bun/_bun" ] && source "/Users/ric19/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by MiniMax Code
+export PATH="/Users/ric19/.mavis/bin:$PATH"

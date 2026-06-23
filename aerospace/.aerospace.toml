@@ -22,6 +22,10 @@ if.app-name-regex-substring = "Zen"
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
+if.app-name-regex-substring = "Helium"
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
 if.app-name-regex-substring = "Zed"
 run = "move-node-to-workspace 2"
 
@@ -30,8 +34,20 @@ if.app-name-regex-substring = "Ghostty"
 run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Obsidian"
+if.app-name-regex-substring = "Kimi"
 run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "Spotify"
+run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "WhatsApp"
+run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "MongoDB Compass"
+run = "move-node-to-workspace 5"
 
 # GAPS & MAPPING
 [key-mapping]
@@ -61,14 +77,17 @@ alt-shift-3 = "move-node-to-workspace 3 --focus-follows-window"
 alt-shift-4 = "move-node-to-workspace 4 --focus-follows-window"
 alt-shift-5 = "move-node-to-workspace 5 --focus-follows-window"
 
-alt-a = "exec-and-forget open -a Zed"
+alt-a = "exec-and-forget open -a Helium"
 alt-w = "exec-and-forget open -a WhatsApp"
 alt-e = "exec-and-forget open -a Finder"
 alt-p = "exec-and-forget open -a 1Password"
-alt-z = "exec-and-forget open -a Zen"
+alt-z = "exec-and-forget open -a Zed"
 alt-enter = "exec-and-forget open -a Ghostty"
 alt-o = "exec-and-forget open -a Obsidian"
 alt-m = "exec-and-forget open -a \"MongoDB Compass\""
+alt-cmd-s = "exec-and-forget open -a Spotify"
+alt-cmd-k = "exec-and-forget open -a Kimi"
+alt-cmd-z = "exec-and-forget open -a Zen"
 
 alt-h = "focus left"
 alt-j = "focus down"
@@ -91,12 +110,12 @@ alt-f = "fullscreen"
 
 alt-shift-semicolon = "mode service"
 alt-shift-enter = "mode apps"
-alt-d = "mode layout" 
+alt-d = "mode layout"
 
 # MODES
 [mode.layout.binding]
-t = ["layout tiles horizontal vertical", "mode main"] 
-a = ["layout accordion horizontal vertical", "mode main"] 
+t = ["layout tiles horizontal vertical", "mode main"]
+a = ["layout accordion horizontal vertical", "mode main"]
 r = ["flatten-workspace-tree", "mode main"]
 esc = ["mode main"]
 enter = ["mode main"]

@@ -1,9 +1,23 @@
-background = #17191d
-foreground = #c8ccd4
-selection-background = #454a56
-selection-foreground = #ffffff
-cursor-color = #74ade8
+# ============================================================================
+# Ghostty config — synced with One Dark Darkened theme
+# Source: https://github.com/pavles6/one-dark-darkened
+# ============================================================================
 
+# ---------------------------------------------------------------------------
+# Core editor + terminal surfaces
+# ---------------------------------------------------------------------------
+background           = #17191d
+foreground           = #bfc4cd
+selection-background = #2a2f38
+selection-foreground = #e5e7ea
+
+# Cursor (matches theme "players[0].cursor")
+cursor-color = #74ade8
+cursor-text  = #17191d
+
+# ---------------------------------------------------------------------------
+# Terminal ANSI palette (matches theme "terminal.ansi.*")
+# ---------------------------------------------------------------------------
 palette = 0=#282c34
 palette = 1=#e06c75
 palette = 2=#98c379
@@ -12,7 +26,6 @@ palette = 4=#61afef
 palette = 5=#c678dd
 palette = 6=#56b6c2
 palette = 7=#abb2bf
-
 palette = 8=#636d83
 palette = 9=#ea858b
 palette = 10=#aad581
@@ -22,20 +35,43 @@ palette = 13=#d398eb
 palette = 14=#6ed5de
 palette = 15=#fafafa
 
-window-decoration = false
-macos-titlebar-style = transparent
-font-family = "JetBrains Mono"
-font-size = 14
-font-thicken = true
-
-mouse-hide-while-typing = true
-confirm-close-surface = false
+# ---------------------------------------------------------------------------
+# Window decorations
+# ---------------------------------------------------------------------------
+window-decoration           = false
+window-padding-balance      = true
+window-padding-color        = extend
+macos-titlebar-style        = transparent
+macos-window-shadow         = false
 macos-non-native-fullscreen = false
 
-clipboard-read = allow
-clipboard-paste-protection = false
-clipboard-write = allow
+# ---------------------------------------------------------------------------
+# Font
+# ---------------------------------------------------------------------------
+font-family    = "JetBrains Mono"
+font-size      = 14
+font-thicken   = true
+font-feature   = -liga, +calt
+font-variation = normal
 
-keybind = global:ctrl+grave_accent=toggle_quick_terminal
-shell-integration = detect
+# ---------------------------------------------------------------------------
+# Behavior
+# ---------------------------------------------------------------------------
+mouse-hide-while-typing    = true
+confirm-close-surface     = false
+clipboard-read            = allow
+clipboard-paste-protection = false
+clipboard-write           = allow
+shell-integration         = detect
 shell-integration-features = cursor,sudo,title
+
+# ---------------------------------------------------------------------------
+# Keybinds
+# ---------------------------------------------------------------------------
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+# ---------------------------------------------------------------------------
+# Custom env so other tools can detect we're in a "Darkened" terminal
+# ---------------------------------------------------------------------------
+env = COLORTERM_DARKENED=1
