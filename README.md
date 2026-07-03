@@ -1,81 +1,129 @@
-# 🔧 dotfiles
+# dotfiles
 
-My personal configuration files for a **reproducible**, **terminal-centric** macOS development environment. 
+Personal configuration for a reproducible, terminal-centric macOS (Apple
+Silicon) development environment. Keyboard-driven, modular, managed with **GNU
+Stow** to keep `$HOME` clean.
 
-Coming from a Linux/Hyprland background, this setup focuses on keyboard-driven workflows, modularity, and speed. Managed via **GNU Stow** to keep the home directory clean.
+For the operating guide, invariants, and conventions an AI agent or new
+contributor should follow, see [AGENTS.md](./AGENTS.md) — it is the canonical
+source of truth for how to work in this repo.
 
-## 🎨 Aesthetic
-- **Theme:** [Tokyo Night](https://github.com/folke/tokyo-night.nvim) (Consistent across Terminal, Tmux, & Neovim)
-- **Font:** JetBrains Mono Nerd Font
-- **Icons:** Nerd Fonts symbols
+## Table of contents
 
-## 🧰 The Stack
+- [Overview](#overview)
+- [Stack](#stack)
+- [Layout](#layout)
+- [Development](#development)
+- [Active migrations](#active-migrations)
+- [Conventions](#conventions)
+- [License](#license)
 
-| Category       | Tool                                                                 | Description |
-| :---           | :---                                                                 | :--- |
-| **Terminal** | [Ghostty](https://ghostty.org/)                                      | High-performance, GPU-accelerated terminal. |
-| **Multiplexer**| [Tmux](https://github.com/tmux/tmux)                                 | Window management with `tpm` and Vim-style navigation. |
-| **Shell** | [Nushell](https://www.nushell.sh/)                                   | Modern, structured shell. |
-| **Prompt** | [Starship](https://starship.rs/)                                     | Blazing fast, minimal prompt. |
-| **Editor** | [Neovim](https://neovim.io/)                                         | PDE (Personal Development Environment). |
-| **Management** | [GNU Stow](https://www.gnu.org/software/stow/)                       | Symlink farm manager. |
+## Overview
 
-## 📂 Structure
+Every top-level directory is a **Stow package** whose internal path mirrors the
+target under `$HOME`. Deploying a package symlinks its files into place. The
+setup is optimized for a keyboard-driven, terminal-first workflow on a
+TypeScript / React / Next.js / Node.js stack (with React Native adjacent).
 
-The repository uses the **GNU Stow** structure. Each top-level folder represents a "package" that can be symlinked individually.
+Theme is **One Dark Darkened**, applied across the terminal, multiplexer, and
+(target) editor. Fonts use Nerd Font glyphs for icons.
 
-```text
+The AI layer (Hermes CLI over the Dario proxy to a Claude Max subscription)
+lives outside this repo, but several PATH and shell decisions here exist to
+support it. See [AGENTS.md](./AGENTS.md) section 8 for the invariant that keeps
+that stack correct.
+
+## Stack
+
+| Category | Tool | Role |
+|---|---|---|
+| Window manager | [AeroSpace](https://github.com/nikitabobko/AeroSpace) | Tiling WM for macOS |
+| Terminal | [Ghostty](https://ghostty.org/) | GPU-accelerated terminal emulator |
+| Multiplexer (current) | [Zellij](https://zellij.dev/) | Terminal workspace multiplexer |
+| Multiplexer (legacy) | [tmux](https://github.com/tmux/tmux) | Kept for reference / rollback |
+| Multiplexer (target) | [Herdr](https://herdr.dev/) | Agent-aware multiplexer (migration in progress) |
+| Shell | [zsh](https://www.zsh.org/) | Primary shell + dev toolchain entrypoint |
+| Prompt | [Starship](https://starship.rs/) | Minimal, fast prompt |
+| Editor (current) | [Zed](https://zed.dev/) | Daily driver / backup editor |
+| Editor (target) | [Neovim](https://neovim.io/) + [LazyVim](https://www.lazyvim.org/) | Being learned from scratch to become primary |
+| VCS | [Git](https://git-scm.com/) | Global config |
+| Symlinks | [GNU Stow](https://www.gnu.org/software/stow/) | Symlink farm manager |
+
+Shell toolchain (wired in `zsh/.zshrc`): fnm (Node), bun, yarn, npm, Java 17
+(React Native), Android SDK, zoxide, atuin, direnv, fzf, zsh-autosuggestions,
+zsh-syntax-highlighting.
+
+## Layout
+
+```
 ~/.dotfiles/
-├── ghostty/      # Terminal config
-├── nushell/      # Shell config & env
-├── nvim/         # Neovim lua config
-├── starship/     # Prompt preset
-├── tmux/         # Multiplexer config
-└── README.md
-🚀 Installation
-1. Prerequisites
-Install the core tools using Homebrew:
+├── aerospace/    # AeroSpace tiling window manager
+├── ghostty/      # Ghostty terminal + One Dark Darkened theme
+├── git/          # Global git config
+├── nvim/         # Neovim (LazyVim)
+├── tmux/         # tmux (legacy/backup)
+├── zellij/       # Zellij (current multiplexer)
+├── zsh/          # zsh shell + dev toolchain
+├── AGENTS.md     # canonical operating guide
+├── CLAUDE.md     # redirect to AGENTS.md
+└── README.md     # this file
+```
 
-Bash
+Each package has its own `README.md` with current state, features, and goal.
 
-brew install stow ghostty tmux nushell starship neovim
-2. Clone
-Clone this repository into your home directory:
+## Development
 
-Bash
+### Prerequisites
 
-git clone [https://github.com/YOUR_USERNAME/dotfiles.git](https://github.com/YOUR_USERNAME/dotfiles.git) ~/.dotfiles
-cd ~/.dotfiles
-3. Install Configs (Stow)
-Use stow to symlink specific packages into your home directory:
-
-Bash
-
-# Install everything
-stow ghostty nushell starship tmux nvim
-
-# OR install individually
-stow ghostty
-stow tmux
-4. Post-Install
-Tmux: Press Ctrl + Space + I to install plugins.
-
-Nushell: Add it to /etc/shells and run chsh -s $(which nu).
-
-⌨️ Keybindings (Highlights)
-Leader Key: Ctrl + Space (Tmux)
-
-Navigation: h j k l (Seamless movement between Tmux panes and Vim splits)
-
-Splits: | (Horizontal) and - (Vertical)
-
----
-
-### How to push this to GitHub
-Since you already set up the git repo, just add, commit, and push:
+Install the core tools with Homebrew:
 
 ```bash
+brew install stow ghostty zellij starship neovim aerospace fnm zoxide atuin direnv fzf
+```
+
+### Clone and deploy
+
+```bash
+git clone git@github.com:Ricwolf19/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-git add README.md
-git commit -m "docs: add readme and documentation"
-git push
+
+# Deploy everything
+stow aerospace ghostty git nvim zellij zsh
+
+# Or deploy individually
+stow ghostty
+stow zellij
+```
+
+Stow symlinks each package's files into `$HOME`. If a real file already exists
+at a target path, resolve the conflict (move or remove it) before stowing —
+Stow will not overwrite non-symlink files.
+
+### Remove a package
+
+```bash
+stow -D zellij
+```
+
+## Active migrations
+
+- **Multiplexer: Zellij → Herdr.** Zellij is the working multiplexer today;
+  Herdr (agent-aware: persistent PTYs, semantic agent state, remote SSH attach)
+  is being configured. tmux is retained as a legacy/backup reference.
+- **Editor: Zed → Neovim.** Zed is the current daily driver; Neovim (LazyVim)
+  is being rebuilt from scratch to be understood and configured to taste, with
+  the goal of becoming the primary environment for code, text, markdown, image
+  preview, and data-file (JSON/XML) viewing.
+
+## Conventions
+
+- Documentation in English, no emojis in committed files.
+- Commit messages follow Conventional Commits (`feat(scope): ...`).
+- One tool per Stow package; package paths mirror `$HOME`.
+- Secrets never enter the repo (see `.gitignore`).
+
+Full conventions and invariants: [AGENTS.md](./AGENTS.md).
+
+## License
+
+See [LICENSE](./LICENSE).
