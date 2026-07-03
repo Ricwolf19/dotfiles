@@ -1,6 +1,16 @@
+# CONFIG VERSION
+# Opt-in to config-version 2 (silences the v1-outdated warning and makes
+# persistent-workspaces explicit instead of inferred from keybindings).
+# See: https://nikitabobko.github.io/AeroSpace/guide#config-version
+config-version = 2
+
 # STARTUP
 start-at-login = true
 after-startup-command = []
+
+# Auto-reload the config when this file is saved (new in recent versions).
+# Requires one manual reload after enabling to start the watcher.
+auto-reload-config = true
 
 # GENERAL SETTINGS
 enable-normalization-flatten-containers = false
