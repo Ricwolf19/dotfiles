@@ -99,3 +99,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Added by MiniMax Code
 export PATH="/Users/ric19/.mavis/bin:$PATH"
+
+# Hermes Agent — ensure ~/.local/bin is on PATH
+export PATH="$HOME/.local/bin:$PATH"
