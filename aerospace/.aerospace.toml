@@ -34,19 +34,23 @@ if.app-name-regex-substring = "Ghostty"
 run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Kimi"
+if.app-name-regex-substring = "Hermes"
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-name-regex-substring = "Spotify"
-run = "move-node-to-workspace 4"
+run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-name-regex-substring = "WhatsApp"
-run = "move-node-to-workspace 4"
+run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-name-regex-substring = "MongoDB Compass"
+run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "Obsidian"
 run = "move-node-to-workspace 5"
 
 # GAPS & MAPPING
@@ -86,7 +90,7 @@ alt-enter = "exec-and-forget open -a Ghostty"
 alt-o = "exec-and-forget open -a Obsidian"
 alt-m = "exec-and-forget open -a \"MongoDB Compass\""
 alt-cmd-s = "exec-and-forget open -a Spotify"
-alt-cmd-k = "exec-and-forget open -a Kimi"
+alt-cmd-h = "exec-and-forget open -a Hermes"
 alt-cmd-z = "exec-and-forget open -a Zen"
 
 alt-h = "focus left"
