@@ -1,0 +1,109 @@
+#!/bin/bash
+# SketchyBar configuration — managed in ~/.dotfiles (GNU Stow).
+#
+# STATUS: DISABLED (2026-07-05) — parked for later polish. Not launched by
+# AeroSpace and not running as a brew service. The config below is kept as-is.
+# Re-enable: uncomment the block in aerospace/.aerospace.toml, then
+#   brew services start sketchybar
+#
+# Theme: Vesper. Professional, light, silver/peach accents.
+# Workspace integration is AeroSpace-native (not yabai).
+# Docs: https://felixkratz.github.io/SketchyBar/
+
+CONFIG_DIR="$HOME/.config/sketchybar"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+source "$CONFIG_DIR/colors.sh"
+source "$CONFIG_DIR/icons.sh"
+
+FONT="SF Pro"                       # system font for labels
+NERD="JetBrainsMono Nerd Font"      # glyphs for icons
+
+##### Bar appearance #####
+sketchybar --bar \
+  height=36 \
+  position=top \
+  sticky=on \
+  blur_radius=30 \
+  color="$BAR_COLOR" \
+  padding_left=8 \
+  padding_right=8 \
+  margin=8 \
+  y_offset=6 \
+  corner_radius=10
+
+##### Global item defaults #####
+default=(
+  padding_left=4
+  padding_right=4
+  icon.font="$NERD:Bold:15.0"
+  icon.color="$WHITE"
+  label.font="$FONT:Semibold:13.0"
+  label.color="$WHITE"
+  background.corner_radius=8
+  background.height=26
+  icon.padding_left=8
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=8
+)
+sketchybar --default "${default[@]}"
+
+##### Left: AeroSpace workspace indicators #####
+# One item per workspace. The aerospace.sh plugin highlights the focused one.
+sketchybar --add event aerospace_workspace_change
+
+for sid in 1 2 3 4 5; do
+  icon_var="ICON_${sid}"
+  sketchybar --add item space."$sid" left \
+    --set space."$sid" \
+      icon="${!icon_var}" \
+      icon.font="$NERD:Bold:15.0" \
+      label.drawing=off \
+      background.color="$ITEM_BG" \
+      background.border_color="$BORDER_COLOR" \
+      background.border_width=1 \
+      background.corner_radius=8 \
+      background.height=26 \
+      icon.padding_left=10 \
+      icon.padding_right=10 \
+      click_script="aerospace workspace $sid" \
+      script="$PLUGIN_DIR/aerospace.sh" \
+    --subscribe space."$sid" aerospace_workspace_change
+done
+
+##### Left: focused app name #####
+sketchybar --add item front_app left \
+  --set front_app \
+    icon.drawing=off \
+    label.font="$FONT:Heavy:13.0" \
+    label.color="$SILVER" \
+    script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched
+
+##### Right: clock #####
+sketchybar --add item clock right \
+  --set clock \
+    icon="$ICON_CLOCK" \
+    icon.color="$PEACH" \
+    background.color="$ITEM_BG" \
+    update_freq=10 \
+    script="$PLUGIN_DIR/clock.sh"
+
+##### Right: battery #####
+sketchybar --add item battery right \
+  --set battery \
+    background.color="$ITEM_BG" \
+    update_freq=60 \
+    script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery power_source_change system_woke
+
+##### Right: volume #####
+sketchybar --add item volume right \
+  --set volume \
+    background.color="$ITEM_BG" \
+    script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change
+
+##### Finalize #####
+sketchybar --update
+echo "sketchybar configuration loaded (Vesper)."

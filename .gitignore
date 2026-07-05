@@ -25,3 +25,10 @@
 # Ignore the plugins folder itself (we only want the TPM manager script)
 tmux/.tmux/plugins/
 !tmux/.tmux/plugins/tpm
+
+# --- Herdr ---
+# Herdr writes runtime artifacts (unix sockets, session state) next to its
+# stowed config in ~/.config/herdr. Only config.toml is versioned; these must
+# never enter the repo. Logs are already covered by *.log above.
+*.sock
+herdr/**/session.json

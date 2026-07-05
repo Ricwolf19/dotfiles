@@ -18,10 +18,11 @@ It is configuration, not application code. Every top-level directory is a
 The owner is a TypeScript / React / Next.js / Node.js developer (with React
 Native as an adjacent area) migrating toward a fully keyboard-driven,
 terminal-first workflow. The environment is in active transition on two fronts:
-the multiplexer is moving from **Zellij** toward **Herdr** (an agent-aware
-multiplexer), and the editor is moving from **Zed** (current daily driver)
-toward **Neovim** (LazyVim, being learned from scratch to eventually become the
-primary editor for code, text, markdown, images, and data files).
+the multiplexer has moved to **Herdr** (an agent-aware multiplexer) as the
+primary, with **Zellij** retained for rollback, and the editor is moving from
+**Zed** (current daily driver) toward **Neovim** (LazyVim, being learned from
+scratch to eventually become the primary editor for code, text, markdown,
+images, and data files).
 
 The AI layer of this environment runs on **Hermes CLI** backed by **Dario**, a
 local proxy that routes model traffic to a Claude Max subscription. That stack
@@ -59,11 +60,14 @@ Annotated, top two levels. Each top-level directory is a Stow package.
 ```
 ~/.dotfiles/
 ├── aerospace/    # AeroSpace tiling window manager (.aerospace.toml)
-├── ghostty/      # Ghostty terminal emulator config + theme
+├── borders/      # JankyBorders config (focused-window border)
+├── ghostty/      # Ghostty terminal emulator config + theme + cursor shaders
 ├── git/          # Global git config (.gitconfig)
+├── herdr/        # Herdr config (current agent-aware multiplexer)
 ├── nvim/         # Neovim config (LazyVim distribution)
+├── sketchybar/   # SketchyBar config (custom status bar)
 ├── tmux/         # tmux config (legacy/backup multiplexer, kept for reference)
-├── zellij/       # Zellij config (current multiplexer)
+├── zellij/       # Zellij config (previous multiplexer, kept for rollback)
 ├── zsh/          # zsh shell: .zshrc, .zprofile (shell + full dev toolchain)
 ├── AGENTS.md     # this file — canonical operating guide
 ├── CLAUDE.md     # redirect to AGENTS.md
@@ -72,8 +76,7 @@ Annotated, top two levels. Each top-level directory is a Stow package.
 └── .gitignore
 ```
 
-Herdr (planned multiplexer) does not yet have a package; it will be added as
-`herdr/` when its config is created.
+Herdr is the active multiplexer and lives in the `herdr/` package.
 
 ## 4. Packages (tools)
 
@@ -83,11 +86,14 @@ goal. Summary:
 | Package | Tool | Role | Status |
 |---|---|---|---|
 | `aerospace` | AeroSpace | Tiling window manager | Active |
+| `borders` | JankyBorders | Focused-window border | Active |
 | `ghostty` | Ghostty | Terminal emulator | Active (primary) |
 | `git` | Git | Version control config | Active |
+| `herdr` | Herdr | Agent-aware multiplexer | Active (primary) |
 | `nvim` | Neovim + LazyVim | Editor | Active, being learned; target primary editor |
+| `sketchybar` | SketchyBar | Status bar | Active |
 | `tmux` | tmux | Multiplexer | Legacy/backup, kept for reference |
-| `zellij` | Zellij | Multiplexer | Active (current) |
+| `zellij` | Zellij | Multiplexer | Previous, kept for rollback |
 | `zsh` | zsh | Shell + dev toolchain entrypoint | Active (primary shell) |
 
 ## 5. Environment & toolchain
@@ -120,10 +126,10 @@ Configs are symlinked into `$HOME` with GNU Stow. From the repo root:
 stow ghostty
 
 # Deploy several
-stow ghostty zellij zsh nvim git aerospace
+stow ghostty herdr zsh nvim git aerospace
 
 # Remove a package's symlinks
-stow -D zellij
+stow -D herdr
 ```
 
 Stow creates symlinks mirroring each package's internal path. Conflicts (a real
@@ -137,9 +143,17 @@ overwrite non-symlink files.
 - **Config comments explain _why_**, not _what_ — only when non-obvious.
 - **Commit messages: Conventional Commits.** The history uses `feat(scope)`,
   `fix(scope)`, `chore(scope)`, `refactor(scope)`, `docs`. Match it.
-- **Theme is One Dark Darkened**, applied consistently across Ghostty, Zellij,
-  and (target) Neovim. Font: a Nerd Font for icon glyphs. New tool configs
-  should match this palette.
+- **Theme is One Dark Darkened**, applied consistently across Ghostty, Herdr,
+  and Zellij (and target Neovim). The palette is matched exactly to the Zed
+  `one-dark-darkened` extension so every surface reads like the editor: soft
+  silver-gray text (`#c8ccd4`) on a deep dark background (`#17191d`), easy on
+  the eyes. Ghostty carries the full palette explicitly; Herdr uses its
+  `terminal` base theme (inherits Ghostty's palette for a perfect match) with a
+  silver `accent = "#c8ccd4"`. The silver accent is the environment's signature
+  touch. Font: a Nerd Font for icon glyphs. New tool configs should match this
+  palette.
+  (SketchyBar and JankyBorders, currently disabled, still carry a silver accent
+  in their parked configs; revisit their palette when re-enabled.)
 - **Secrets never land in the repo.** `.gitignore` covers history files, swap
   files, and shell history. Do not commit tokens, keys, or `.env` contents.
 - **One tool per Stow package.** Keep each tool self-contained in its directory.
@@ -208,11 +222,12 @@ overwrite non-symlink files.
 
 ## 11. Active migrations (current focus)
 
-- **Multiplexer: Zellij to Herdr.** Zellij is the working multiplexer today. The
-  active work is building a Herdr configuration (agent-aware multiplexer:
-  persistent PTYs, semantic agent state, remote SSH attach). tmux is retained as
-  a legacy/backup reference. See `zellij/README.md` and (when created)
-  `herdr/README.md`.
+- **Multiplexer: Zellij to Herdr (adopted).** Herdr is the primary multiplexer
+  now (agent-aware: persistent PTYs, semantic agent state, remote SSH attach),
+  configured with the `ctrl+space` prefix and the One Dark Darkened theme
+  (via the `terminal` base). Zellij is retained for rollback, tmux as a deeper
+  legacy reference. See `herdr/README.md` for config, the Hermes integration,
+  and the Zellij-to-Herdr cheat sheet.
 - **Editor: Zed to Neovim.** Zed is the current daily driver and backup editor.
   Neovim (LazyVim) is being rebuilt from scratch to be understood piece by piece
   and configured to taste, with the goal of becoming the primary environment for

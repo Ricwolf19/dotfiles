@@ -1,22 +1,25 @@
 # ============================================================================
-# Ghostty config — synced with One Dark Darkened theme
-# Source: https://github.com/pavles6/one-dark-darkened
+# Ghostty config — One Dark Darkened theme
+# Palette matched exactly to the Zed "One Dark - Darkened" extension so the
+# terminal reads identically to the editor: soft silver-gray text on a deep
+# dark surface, easy on the eyes. Silver accent on the cursor.
+# Source: Zed extension one-dark-darkened (themes/one-dark-darkened.json).
 # ============================================================================
 
 # ---------------------------------------------------------------------------
-# Core editor + terminal surfaces
+# Core surfaces (match Zed: editor.background / terminal.foreground)
 # ---------------------------------------------------------------------------
 background           = #17191d
-foreground           = #bfc4cd
-selection-background = #2a2f38
+foreground           = #c8ccd4
+selection-background = #454a56
 selection-foreground = #e5e7ea
 
-# Cursor (matches theme "players[0].cursor")
-cursor-color = #74ade8
+# Cursor — silver accent (the "toque plateado"), dark glyph underneath.
+cursor-color = #c8ccd4
 cursor-text  = #17191d
 
 # ---------------------------------------------------------------------------
-# Terminal ANSI palette (matches theme "terminal.ansi.*")
+# Terminal ANSI palette (matches theme terminal.ansi.*)
 # ---------------------------------------------------------------------------
 palette = 0=#282c34
 palette = 1=#e06c75
@@ -54,6 +57,17 @@ font-thicken   = true
 font-feature   = -liga, +calt
 
 # ---------------------------------------------------------------------------
+# Cursor trail shaders (GLSL, vendored from sahaj-b/ghostty-cursor-shaders, MIT)
+#   cursor_warp        — Neovide-like smooth trail that follows the cursor.
+#   sonic_boom_cursor  — expanding pulse on cursor mode change (block <-> line).
+# custom-shader-animation = always keeps the trail animating even when the
+# window loses focus. Tuning parameters live at the top of each .glsl file.
+# ---------------------------------------------------------------------------
+custom-shader = shaders/cursor_warp.glsl
+custom-shader = shaders/sonic_boom_cursor.glsl
+custom-shader-animation = always
+
+# ---------------------------------------------------------------------------
 # Behavior
 # ---------------------------------------------------------------------------
 mouse-hide-while-typing    = true
@@ -69,8 +83,3 @@ shell-integration-features = cursor,sudo,title
 # ---------------------------------------------------------------------------
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = global:cmd+grave_accent=toggle_quick_terminal
-
-# ---------------------------------------------------------------------------
-# Custom env so other tools can detect we're in a "Darkened" terminal
-# ---------------------------------------------------------------------------
-env = COLORTERM_DARKENED=1

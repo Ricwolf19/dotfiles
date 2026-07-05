@@ -8,6 +8,20 @@ config-version = 2
 start-at-login = true
 after-startup-command = []
 
+# --- DISABLED (2026-07-05): SketchyBar + JankyBorders parked for later polish.
+# The configs remain in the sketchybar/ and borders/ packages; to re-enable,
+# uncomment the two blocks below and run `brew services start sketchybar borders`.
+#
+# after-startup-command = [
+#   'exec-and-forget borders',
+#   'exec-and-forget sketchybar',
+# ]
+#
+# exec-on-workspace-change = [
+#   '/bin/bash', '-c',
+#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+# ]
+
 # Auto-reload the config when this file is saved (new in recent versions).
 # Requires one manual reload after enabling to start the watcher.
 auto-reload-config = true

@@ -25,8 +25,11 @@ target under `$HOME`. Deploying a package symlinks its files into place. The
 setup is optimized for a keyboard-driven, terminal-first workflow on a
 TypeScript / React / Next.js / Node.js stack (with React Native adjacent).
 
-Theme is **One Dark Darkened**, applied across the terminal, multiplexer, and
-(target) editor. Fonts use Nerd Font glyphs for icons.
+Theme is **One Dark Darkened**, applied across the terminal (Ghostty),
+multiplexer (Herdr), and Zellij, and targeted for the editor. The palette is
+matched to the Zed `one-dark-darkened` extension (soft silver-gray text on a
+deep dark background) with a silver accent. Fonts use Nerd Font glyphs for
+icons.
 
 The AI layer (Hermes CLI over the Dario proxy to a Claude Max subscription)
 lives outside this repo, but several PATH and shell decisions here exist to
@@ -38,10 +41,12 @@ that stack correct.
 | Category | Tool | Role |
 |---|---|---|
 | Window manager | [AeroSpace](https://github.com/nikitabobko/AeroSpace) | Tiling WM for macOS |
-| Terminal | [Ghostty](https://ghostty.org/) | GPU-accelerated terminal emulator |
-| Multiplexer (current) | [Zellij](https://zellij.dev/) | Terminal workspace multiplexer |
-| Multiplexer (legacy) | [tmux](https://github.com/tmux/tmux) | Kept for reference / rollback |
-| Multiplexer (target) | [Herdr](https://herdr.dev/) | Agent-aware multiplexer (migration in progress) |
+| Status bar | [SketchyBar](https://felixkratz.github.io/SketchyBar/) | Custom menu bar, AeroSpace-aware (configured, currently disabled) |
+| Window border | [JankyBorders](https://github.com/FelixKratz/JankyBorders) | Silver border on the focused window (configured, currently disabled) |
+| Terminal | [Ghostty](https://ghostty.org/) | GPU-accelerated terminal emulator (One Dark Darkened, cursor-trail shaders) |
+| Multiplexer (current) | [Herdr](https://herdr.dev/) | Agent-aware multiplexer (persistent PTYs, semantic agent state, SSH attach) |
+| Multiplexer (previous) | [Zellij](https://zellij.dev/) | Terminal workspace multiplexer, kept for rollback |
+| Multiplexer (legacy) | [tmux](https://github.com/tmux/tmux) | Kept for deeper reference / rollback |
 | Shell | [zsh](https://www.zsh.org/) | Primary shell + dev toolchain entrypoint |
 | Prompt | [Starship](https://starship.rs/) | Minimal, fast prompt |
 | Editor (current) | [Zed](https://zed.dev/) | Daily driver / backup editor |
@@ -58,11 +63,14 @@ zsh-syntax-highlighting.
 ```
 ~/.dotfiles/
 ├── aerospace/    # AeroSpace tiling window manager
-├── ghostty/      # Ghostty terminal + One Dark Darkened theme
+├── borders/      # JankyBorders (focused-window border)
+├── ghostty/      # Ghostty terminal + One Dark Darkened theme + cursor shaders
 ├── git/          # Global git config
+├── herdr/        # Herdr (current agent-aware multiplexer)
 ├── nvim/         # Neovim (LazyVim)
+├── sketchybar/   # SketchyBar (custom status bar)
 ├── tmux/         # tmux (legacy/backup)
-├── zellij/       # Zellij (current multiplexer)
+├── zellij/       # Zellij (previous multiplexer, kept for rollback)
 ├── zsh/          # zsh shell + dev toolchain
 ├── AGENTS.md     # canonical operating guide
 ├── CLAUDE.md     # redirect to AGENTS.md
@@ -78,7 +86,18 @@ Each package has its own `README.md` with current state, features, and goal.
 Install the core tools with Homebrew:
 
 ```bash
-brew install stow ghostty zellij starship neovim aerospace fnm zoxide atuin direnv fzf
+brew install stow ghostty herdr zellij starship neovim aerospace fnm zoxide atuin direnv fzf lazygit
+
+# SketchyBar and JankyBorders come from a third-party tap:
+brew tap FelixKratz/formulae
+brew install sketchybar borders
+```
+
+SketchyBar and JankyBorders run as brew services and are also launched by
+AeroSpace on startup:
+
+```bash
+brew services start sketchybar borders
 ```
 
 ### Clone and deploy
@@ -88,11 +107,11 @@ git clone git@github.com:Ricwolf19/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 # Deploy everything
-stow aerospace ghostty git nvim zellij zsh
+stow aerospace ghostty git herdr nvim zellij zsh
 
 # Or deploy individually
 stow ghostty
-stow zellij
+stow herdr
 ```
 
 Stow symlinks each package's files into `$HOME`. If a real file already exists
@@ -107,9 +126,10 @@ stow -D zellij
 
 ## Active migrations
 
-- **Multiplexer: Zellij → Herdr.** Zellij is the working multiplexer today;
-  Herdr (agent-aware: persistent PTYs, semantic agent state, remote SSH attach)
-  is being configured. tmux is retained as a legacy/backup reference.
+- **Multiplexer: Zellij → Herdr (adopted).** Herdr is the primary multiplexer
+  now (agent-aware: persistent PTYs, semantic agent state, remote SSH attach),
+  using the `ctrl+space` prefix and the One Dark Darkened theme. Zellij is kept
+  for rollback, tmux as a deeper legacy reference. See [`herdr/README.md`](./herdr/README.md).
 - **Editor: Zed → Neovim.** Zed is the current daily driver; Neovim (LazyVim)
   is being rebuilt from scratch to be understood and configured to taste, with
   the goal of becoming the primary environment for code, text, markdown, image

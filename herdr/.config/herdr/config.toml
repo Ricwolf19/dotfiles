@@ -1,0 +1,40 @@
+# herdr configuration — managed in ~/.dotfiles (GNU Stow); do not edit the symlink target.
+# Reload after changes without restarting the server: herdr server reload-config
+# Full reference: https://herdr.dev/docs/configuration/
+
+[theme]
+# One Dark Darkened, matched to the Zed editor theme. Herdr has no built-in
+# "one-dark-darkened", so we use the "terminal" base theme, which inherits the
+# host terminal's palette. Ghostty already carries the exact One Dark Darkened
+# colors (background #17191d, foreground #c8ccd4, full ANSI set), so Herdr
+# renders with an identical palette — a perfect match, no divergence.
+name = "terminal"
+# Do not follow the OS light/dark switch; the environment is always dark.
+auto_switch = false
+
+[theme.custom]
+# Silver accent for highlights, borders, and navigation UI — the "toque
+# plateado", matching the Ghostty cursor and Zed foreground.
+accent = "#c8ccd4"
+
+[terminal]
+# Empty default_shell falls back to $SHELL (zsh). New panes inherit the source
+# pane's cwd, matching the tab-per-project workflow carried over from Zellij.
+new_cwd = "follow"
+
+[keys]
+# Prefix moved off the default ctrl+b to ctrl+space.
+# Rationale: no conflict with readline's Ctrl+a (beginning-of-line) in zsh, and
+# the macOS input-source switch on Ctrl+Space is disabled on this machine.
+prefix = "ctrl+space"
+
+[ui]
+# Show the detected agent label (claude, hermes, codex, ...) on split pane
+# borders so it is clear which agent runs where without opening the sidebar.
+show_agent_labels_on_pane_borders = true
+
+agent_panel_sort = "spaces"
+[ui.toast]
+# Route background state-change notifications to the macOS notification service
+# so agent blocked/done events surface even when Herdr is not focused.
+delivery = "system"
