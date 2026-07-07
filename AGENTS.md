@@ -143,17 +143,15 @@ overwrite non-symlink files.
 - **Config comments explain _why_**, not _what_ — only when non-obvious.
 - **Commit messages: Conventional Commits.** The history uses `feat(scope)`,
   `fix(scope)`, `chore(scope)`, `refactor(scope)`, `docs`. Match it.
-- **Theme is One Dark Darkened**, applied consistently across Ghostty, Herdr,
-  and Zellij (and target Neovim). The palette is matched exactly to the Zed
-  `one-dark-darkened` extension so every surface reads like the editor: soft
-  silver-gray text (`#c8ccd4`) on a deep dark background (`#17191d`), easy on
-  the eyes. Ghostty carries the full palette explicitly; Herdr uses its
-  `terminal` base theme (inherits Ghostty's palette for a perfect match) with a
-  silver `accent = "#c8ccd4"`. The silver accent is the environment's signature
-  touch. Font: a Nerd Font for icon glyphs. New tool configs should match this
-  palette.
-  (SketchyBar and JankyBorders, currently disabled, still carry a silver accent
-  in their parked configs; revisit their palette when re-enabled.)
+- **Theme**: Ghostty carries the full One Dark Darkened palette explicitly
+  (matched to the Zed editor extension, `#17191d` background, `#c8ccd4` text,
+  silver accent on the cursor). **Herdr is the single surface that uses
+  Vesper instead**, by design (decision 2026-07-05) — it gives the multiplexer
+  its own visual identity and makes it instantly distinguishable from a bare
+  shell. The rest of the desktop (SketchyBar/JankyBorders — disabled — and
+  Zellij) still carries One Dark to match Ghostty. Font: a Nerd Font for icon
+  glyphs. New tool configs should match One Dark Darkened; the Herdr exception
+  is intentional and scoped to that package.
 - **Secrets never land in the repo.** `.gitignore` covers history files, swap
   files, and shell history. Do not commit tokens, keys, or `.env` contents.
 - **One tool per Stow package.** Keep each tool self-contained in its directory.
@@ -203,7 +201,8 @@ overwrite non-symlink files.
 - **Editing `~/.config/<tool>/...` directly** instead of the repo source.
 - **Adding a tool without a Stow-mirrored path** (breaks `stow`/`stow -D`).
 - **Committing a config with a different theme** than One Dark Darkened without
-  flagging it as an intentional theme change.
+  flagging it as an intentional theme change. Herdr is the intentional
+  exception (Vesper), per section 7.
 - **Deleting a tool's package outright** when migrating (e.g. tmux to zellij to
   herdr). Keep the old package for reference/rollback unless asked to remove it.
 - **Documenting aspirational state as current.** A tool's README must say what

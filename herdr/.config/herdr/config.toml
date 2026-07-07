@@ -3,19 +3,13 @@
 # Full reference: https://herdr.dev/docs/configuration/
 
 [theme]
-# One Dark Darkened, matched to the Zed editor theme. Herdr has no built-in
-# "one-dark-darkened", so we use the "terminal" base theme, which inherits the
-# host terminal's palette. Ghostty already carries the exact One Dark Darkened
-# colors (background #17191d, foreground #c8ccd4, full ANSI set), so Herdr
-# renders with an identical palette — a perfect match, no divergence.
-name = "terminal"
+# Environment override (2026-07-05): Vesper on Herdr only. Ghostty and the rest
+# of the desktop stay on One Dark Darkened. Herdr is the single surface that
+# uses Vesper, which gives it its own visual identity and lets you tell Herdr
+# apart from the bare shell at a glance.
+name = "vesper"
 # Do not follow the OS light/dark switch; the environment is always dark.
 auto_switch = false
-
-[theme.custom]
-# Silver accent for highlights, borders, and navigation UI — the "toque
-# plateado", matching the Ghostty cursor and Zed foreground.
-accent = "#c8ccd4"
 
 [terminal]
 # Empty default_shell falls back to $SHELL (zsh). New panes inherit the source
