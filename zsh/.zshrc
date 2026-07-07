@@ -7,8 +7,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 typeset -U PATH fpath
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Users/ric19/.antigravity/antigravity/bin:$PATH"
-export EDITOR="zed"
-export VISUAL="zed"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
