@@ -5,7 +5,7 @@
 config-version = 2
 
 # STARTUP
-start-at-login = true
+start-at-login = false
 after-startup-command = []
 
 # --- DISABLED (2026-07-05): SketchyBar + JankyBorders parked for later polish.
@@ -58,20 +58,16 @@ if.app-name-regex-substring = "Ghostty"
 run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Hermes"
+if.app-name-regex-substring = "Spotify"
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
-if.app-name-regex-substring = "Spotify"
-run = "move-node-to-workspace 5"
-
-[[on-window-detected]]
 if.app-name-regex-substring = "WhatsApp"
-run = "move-node-to-workspace 5"
+run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-name-regex-substring = "MongoDB Compass"
-run = "move-node-to-workspace 5"
+run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-name-regex-substring = "Obsidian"
@@ -114,7 +110,6 @@ alt-enter = "exec-and-forget open -a Ghostty"
 alt-o = "exec-and-forget open -a Obsidian"
 alt-m = "exec-and-forget open -a \"MongoDB Compass\""
 alt-cmd-s = "exec-and-forget open -a Spotify"
-alt-cmd-h = "exec-and-forget open -a Hermes"
 alt-cmd-z = "exec-and-forget open -a Zen"
 
 alt-h = "focus left"

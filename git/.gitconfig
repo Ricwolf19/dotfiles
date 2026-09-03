@@ -1,7 +1,7 @@
 
 [user]
-	name = Ricwolf19
-	email = rhtc19@gmail.com
+	name = Ricardo Tapia
+	email = 108904323+Ricwolf19@users.noreply.github.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -17,3 +17,5 @@
 	prune = true
 [pull]
 	rebase = true
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials

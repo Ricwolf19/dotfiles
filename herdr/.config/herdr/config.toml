@@ -1,3 +1,4 @@
+onboarding = false
 # herdr configuration — managed in ~/.dotfiles (GNU Stow); do not edit the symlink target.
 # Reload after changes without restarting the server: herdr server reload-config
 # Full reference: https://herdr.dev/docs/configuration/
@@ -32,3 +33,6 @@ agent_panel_sort = "spaces"
 # Route background state-change notifications to the macOS notification service
 # so agent blocked/done events surface even when Herdr is not focused.
 delivery = "system"
+
+[experimental]
+pane_history = false

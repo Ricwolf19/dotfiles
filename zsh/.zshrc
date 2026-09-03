@@ -102,3 +102,6 @@ export PATH="/Users/ric19/.mavis/bin:$PATH"
 
 # Hermes Agent — ensure ~/.local/bin is on PATH
 export PATH="$HOME/.local/bin:$PATH"
+
+# kimi-code
+export PATH="/Users/ric19/.kimi-code/bin:$PATH"
