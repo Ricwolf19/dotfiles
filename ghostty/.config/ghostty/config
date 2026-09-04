@@ -40,13 +40,21 @@ palette = 15=#fafafa
 
 # ---------------------------------------------------------------------------
 # Window decorations
+#   window-decoration  = true   → required for the tab bar to exist.
+#   macos-titlebar-style = tabs → tab bar embedded in the titlebar, always
+#                                 visible (even with a single tab).
+#   macos-window-shadow = true  → visual edge so the window reads against
+#                                 other dark windows behind it.
+#   unfocused-split-opacity     → inactive splits dim slightly so focus is
+#                                 always obvious without hard borders.
 # ---------------------------------------------------------------------------
-window-decoration           = false
+window-decoration           = true
 window-padding-balance      = true
 window-padding-color        = extend
-macos-titlebar-style        = transparent
-macos-window-shadow         = false
+macos-titlebar-style        = tabs
+macos-window-shadow         = true
 macos-non-native-fullscreen = false
+unfocused-split-opacity     = 0.9
 
 # ---------------------------------------------------------------------------
 # Font
@@ -80,6 +88,10 @@ shell-integration-features = cursor,sudo,title
 
 # ---------------------------------------------------------------------------
 # Keybinds
+#   ctrl+`  → quick terminal (drop-down terminal, global).
+#   cmd+`   → INTENTIONALLY REMOVED: it was globally hijacking the macOS
+#             "cycle windows of the same app" shortcut (used for Helium
+#             profiles etc.). If you never use the quick terminal, delete
+#             the ctrl binding too.
 # ---------------------------------------------------------------------------
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
-keybind = global:cmd+grave_accent=toggle_quick_terminal
